@@ -48,9 +48,12 @@ void indexCmd(WebServer &server, WebServer::ConnectionType type, char *, bool) {
 // server.setPreventDefault(true); disables the default prosessing and responce once
 void switchBeforeResposeCmd(WebServer &server, WebServer::ConnectionType type, char * tail, bool tailComplete,
 		aJsonObject ** collection, aJsonObject ** model) {
-	if (model != NULL) {
-		pinMode(aJson.getObjectItem(*model, "pin")->valueint, (bool) aJson.getObjectItem(*model, "low")->valuebool);
+ 	if (type == WebServer::PUT) {
+		if (model != NULL) {
+			pinMode(aJson.getObjectItem(*model, "pin")->valueint, (bool) aJson.getObjectItem(*model, "low")->valuebool);
+		}
 	}
+
 
 }
 
